@@ -15,4 +15,4 @@ export const DATE_FORMAT_DD_MM_YYYY_HH_mm_ss = "YYYY-MM-dd'T'HH:mm:ss";
 export const DATE_FORMAT_DD_MM_YYYY_HH_mm_ss_sz = "YYYY-MM-dd'T'HH:mm:ss.SSS";
 export const DATE_FORMAT_DD_MM_YYYY_HH_mm = "dd-MM-YYYY HH:mm";
 export const DATE_FORMAT_HH_mm = "HH:mm";
-export const DATE_FORMAT_YYYY_MM_DDTHH_mm_ssZ = "YYYY-MM-DD'T'HH:mm:ssZ"; 
+export const DATE_FORMAT_YYYY_MM_DDTHH_mm_ssZ = "YYYY-MM-DD'T'HH:mm:ssZ";

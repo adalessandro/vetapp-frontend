@@ -1,17 +1,12 @@
-import React from 'react';
-import styled from '@emotion/styled';
+import React from "react";
+import styled from "@emotion/styled";
 
 const AuthContainer = styled.div(() => ({
-	height: '100vh'
-}))
+  height: "100vh",
+}));
 
 export const AuthLayout = ({ children }) => {
-	
-	return (
-		<AuthContainer>
-			{children}
-		</AuthContainer>
-	)
-}
+  return <AuthContainer>{children}</AuthContainer>;
+};
 
-export default AuthLayout
+export default AuthLayout;

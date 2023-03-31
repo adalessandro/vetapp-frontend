@@ -1,14 +1,7 @@
-import React from 'react';
-
+import React from "react";
 
 export const DefaultDashboard = () => {
-  
-  return (
-    <>  
-      Dashboard
-    </>
-  )
-}
-
+  return <>Dashboard</>;
+};
 
 export default DefaultDashboard;
