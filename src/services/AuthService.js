@@ -32,4 +32,12 @@ AuthService.loginInOAuth = function () {
   });
 };
 
+AuthService.profile = function (params) {
+  return fetch({
+    url: "/auth/profile",
+    method: "get",
+    params,
+  });
+};
+
 export default AuthService;

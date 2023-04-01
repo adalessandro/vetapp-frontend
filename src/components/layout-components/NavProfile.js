@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Dropdown, Avatar } from "antd";
 import { useDispatch } from "react-redux";
 import {
@@ -10,6 +10,7 @@ import {
 } from "@ant-design/icons";
 import NavItem from "./NavItem";
 import Flex from "components/shared-components/Flex";
+import AuthService from "services/AuthService";
 import { signOut } from "store/slices/authSlice";
 import styled from "@emotion/styled";
 import {
@@ -78,14 +79,23 @@ const items = [
 ];
 
 export const NavProfile = ({ mode }) => {
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await AuthService.profile();
+      setUser(response);
+    };
+    fetchData();
+  }, []);
+
   return (
     <Dropdown placement="bottomRight" menu={{ items }} trigger={["click"]}>
       <NavItem mode={mode}>
         <Profile>
           <Avatar src="/img/avatars/thumb-1.jpg" />
           <UserInfo className="profile-text">
-            <Name>Charlie Howard</Name>
-            <Title>Frontend Developer</Title>
+            <Name>{user?.username}</Name>
           </UserInfo>
         </Profile>
       </NavItem>
