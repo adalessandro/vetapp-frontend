@@ -1,12 +1,19 @@
 import React, { Component } from "react";
 import { Card, Table, Tooltip, message, Button } from "antd";
-import { EyeOutlined, DeleteOutlined } from "@ant-design/icons";
+import {
+  EyeOutlined,
+  DeleteOutlined,
+  UnorderedListOutlined,
+} from "@ant-design/icons";
+import HL7ParseView from "./HL7ParseView";
 import HL7RawView from "./HL7RawView";
 import HL7Service from "../../../../services/HL7Service";
+const hl7Standard = require("hl7-standard");
 
 export class HL7MessageList extends Component {
   state = {
     hl7Messages: [],
+    hl7ParseVisible: false,
     hl7RawVisible: false,
     selectedHL7Message: null,
   };
@@ -14,7 +21,12 @@ export class HL7MessageList extends Component {
   componentDidMount() {
     const fetchData = async () => {
       const response = await HL7Service.listHL7();
-      this.setState({ hl7Messages: response });
+      const hl7Messages = Array.from(response);
+      hl7Messages.forEach((elm) => {
+        elm.message = new hl7Standard(elm.payload);
+        elm.message.transform();
+      });
+      this.setState({ hl7Messages });
     };
     fetchData();
   }
@@ -30,10 +42,24 @@ export class HL7MessageList extends Component {
     fetchData();
   };
 
-  showHL7MessageRaw = (userInfo) => {
+  showHL7MessageParse = (hl7Message) => {
+    this.setState({
+      hl7ParseVisible: true,
+      selectedHL7Message: hl7Message,
+    });
+  };
+
+  closeHL7MessageParse = () => {
+    this.setState({
+      hl7ParseVisible: false,
+      selectedHL7Message: null,
+    });
+  };
+
+  showHL7MessageRaw = (hl7Message) => {
     this.setState({
       hl7RawVisible: true,
-      selectedHL7Message: userInfo,
+      selectedHL7Message: hl7Message,
     });
   };
 
@@ -45,7 +71,8 @@ export class HL7MessageList extends Component {
   };
 
   render() {
-    const { hl7Messages, hl7RawVisible, selectedHL7Message } = this.state;
+    const { hl7Messages, hl7ParseVisible, hl7RawVisible, selectedHL7Message } =
+      this.state;
 
     const tableColumns = [
       {
@@ -64,7 +91,19 @@ export class HL7MessageList extends Component {
         dataIndex: "actions",
         render: (_, elm) => (
           <div className="text-right d-flex justify-content-end">
-            <Tooltip title="View">
+            <Tooltip title="View Parse">
+              <Button
+                type="primary"
+                className="mr-2"
+                icon={<UnorderedListOutlined />}
+                onClick={() => {
+                  this.showHL7MessageParse(elm);
+                }}
+                size="small"
+              />
+            </Tooltip>
+
+            <Tooltip title="View Raw">
               <Button
                 type="primary"
                 className="mr-2"
@@ -75,6 +114,7 @@ export class HL7MessageList extends Component {
                 size="small"
               />
             </Tooltip>
+
             <Tooltip title="Delete">
               <Button
                 danger
@@ -94,6 +134,13 @@ export class HL7MessageList extends Component {
         <div className="table-responsive">
           <Table columns={tableColumns} dataSource={hl7Messages} rowKey="id" />
         </div>
+        <HL7ParseView
+          data={selectedHL7Message}
+          visible={hl7ParseVisible}
+          close={() => {
+            this.closeHL7MessageParse();
+          }}
+        />
         <HL7RawView
           data={selectedHL7Message}
           visible={hl7RawVisible}

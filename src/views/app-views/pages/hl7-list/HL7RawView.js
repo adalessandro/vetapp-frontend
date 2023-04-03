@@ -13,7 +13,7 @@ export class HL7RawView extends Component {
         open={visible}
       >
         <div className="text-center mt-3">
-          <h3 className="mt-2 mb-0">HL7 MESSAGE</h3>
+          <h3 className="mt-2 mb-0">HL7 RAW</h3>
         </div>
         <Divider dashed />
         <div className="">
