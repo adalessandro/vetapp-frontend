@@ -31,4 +31,9 @@ export const protectedRoutes = [
     path: `${APP_PREFIX_PATH}/dashboards/default`,
     component: React.lazy(() => import("views/app-views/dashboards/default")),
   },
+  {
+    key: "pages.user-list",
+    path: `${APP_PREFIX_PATH}/pages/user-list`,
+    component: React.lazy(() => import("views/app-views/pages/hl7-list")),
+  },
 ];
