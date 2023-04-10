@@ -104,12 +104,7 @@
 	"sidenav.maps.simple": "Simple Maps",
 	
 	"sidenav.pages": "Pages",
-	"sidenav.pages.profile": "Profile",
-	"sidenav.pages.invoice": "Invoice",
-	"sidenav.pages.pricing": "Pricing",
-	"sidenav.pages.faq": "FAQ",
-	"sidenav.pages.setting": "Setting",
-	"sidenav.pages.userlist": "User list",
+	"sidenav.pages.hl7-list": "HL7 List",
 
 	"sidenav.authentication": "Authentication",
 	"sidenav.authentication.login.1": "Login 1",

@@ -1,4 +1,4 @@
-import { DashboardOutlined } from "@ant-design/icons";
+import { DashboardOutlined, PlusCircleOutlined } from "@ant-design/icons";
 import { APP_PREFIX_PATH } from "configs/AppConfig";
 
 const dashBoardNavTree = [
@@ -22,6 +22,27 @@ const dashBoardNavTree = [
   },
 ];
 
-const navigationConfig = [...dashBoardNavTree];
+const pagesNavTree = [
+  {
+    key: "pages",
+    path: `${APP_PREFIX_PATH}/pages`,
+    title: "sidenav.pages",
+    icon: PlusCircleOutlined,
+    breadcrumb: true,
+    isGroupTitle: true,
+    submenu: [
+      {
+        key: "pages-hl7-list",
+        path: `${APP_PREFIX_PATH}/pages/hl7-list`,
+        title: "sidenav.pages.hl7-list",
+        icon: PlusCircleOutlined,
+        breadcrumb: false,
+        submenu: [],
+      },
+    ],
+  },
+];
+
+const navigationConfig = [...dashBoardNavTree, ...pagesNavTree];
 
 export default navigationConfig;
