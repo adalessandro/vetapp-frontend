@@ -36,4 +36,9 @@ export const protectedRoutes = [
     path: `${APP_PREFIX_PATH}/pages/hl7-list`,
     component: React.lazy(() => import("views/app-views/pages/hl7-list")),
   },
+  {
+    key: "pages.hl7-entries",
+    path: `${APP_PREFIX_PATH}/pages/hl7-entries`,
+    component: React.lazy(() => import("views/app-views/pages/hl7-entries")),
+  },
 ];

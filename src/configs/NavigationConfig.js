@@ -39,6 +39,14 @@ const pagesNavTree = [
         breadcrumb: false,
         submenu: [],
       },
+      {
+        key: "pages-hl7-entries",
+        path: `${APP_PREFIX_PATH}/pages/hl7-entries`,
+        title: "sidenav.pages.hl7-entries",
+        icon: PlusCircleOutlined,
+        breadcrumb: false,
+        submenu: [],
+      },
     ],
   },
 ];
