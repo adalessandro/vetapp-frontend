@@ -152,7 +152,7 @@ class Utils {
     if (typeof a[key] === "string" && typeof b[key] === "string") {
       a = a[key].toLowerCase();
       b = b[key].toLowerCase();
-      return a > b ? -1 : b > a ? 1 : 0;
+      return a > b ? 1 : b > a ? -1 : 0;
     }
     return;
   }
