@@ -17,4 +17,12 @@ HL7EntryService.remove = function (params) {
   });
 };
 
+HL7EntryService.downloadExcel = function (params) {
+  return fetch({
+    url: `/hl7-entry/excel/${params.id}`,
+    method: "get",
+    responseType: "blob",
+  });
+};
+
 export default HL7EntryService;

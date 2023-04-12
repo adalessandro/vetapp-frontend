@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Card, Table, Tooltip, message, Button } from "antd";
 import {
   DeleteOutlined,
+  DownloadOutlined,
   EyeOutlined,
   UnorderedListOutlined,
 } from "@ant-design/icons";
@@ -9,6 +10,7 @@ import HL7EntryView from "./HL7EntryView";
 import HL7EntryModal from "./HL7EntryModal";
 import HL7EntryService from "../../../../services/HL7EntryService";
 import utils from "utils";
+import FileSaver from "file-saver";
 
 export class HL7EntryList extends Component {
   state = {
@@ -64,6 +66,22 @@ export class HL7EntryList extends Component {
       hl7ModalVisible: false,
       selectedHL7Entry: null,
     });
+  };
+
+  downloadHL7EntryExcel = (hl7Entry) => {
+    const fetchData = async () => {
+      const data = await HL7EntryService.downloadExcel({ id: hl7Entry.id });
+      const date = new Date(hl7Entry.observationDate)
+        .toISOString()
+        .split("T")[0];
+      const filename = `${date} - ${hl7Entry.patientAlias} - ${hl7Entry.patientName}.xlsx`;
+      FileSaver.saveAs(data, filename);
+      message.success({
+        content: `Downloaded Excel file ${filename}`,
+        duration: 2,
+      });
+    };
+    fetchData();
   };
 
   render() {
@@ -158,6 +176,17 @@ export class HL7EntryList extends Component {
                 icon={<EyeOutlined />}
                 onClick={() => {
                   this.showHL7EntryModal(elm);
+                }}
+                size="small"
+              />
+            </Tooltip>
+
+            <Tooltip title="Excel">
+              <Button
+                className="mr-2"
+                icon={<DownloadOutlined />}
+                onClick={() => {
+                  this.downloadHL7EntryExcel(elm);
                 }}
                 size="small"
               />
