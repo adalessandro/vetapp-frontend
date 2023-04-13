@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Dropdown, Avatar } from "antd";
 import { useDispatch } from "react-redux";
-import {
-  EditOutlined,
-  SettingOutlined,
-  ShopOutlined,
-  QuestionCircleOutlined,
-  LogoutOutlined,
-} from "@ant-design/icons";
+import { LogoutOutlined } from "@ant-design/icons";
 import NavItem from "./NavItem";
 import Flex from "components/shared-components/Flex";
 import AuthService from "services/AuthService";
@@ -73,8 +67,8 @@ const MenuItemSignOut = (props) => {
 
 const items = [
   {
-    key: "Sign Out",
-    label: <MenuItemSignOut label="Sign Out" />,
+    key: "Cerrar Sesión",
+    label: <MenuItemSignOut label="Cerrar Sesión" />,
   },
 ];
 
@@ -93,7 +87,6 @@ export const NavProfile = ({ mode }) => {
     <Dropdown placement="bottomRight" menu={{ items }} trigger={["click"]}>
       <NavItem mode={mode}>
         <Profile>
-          <Avatar src="/img/avatars/thumb-1.jpg" />
           <UserInfo className="profile-text">
             <Name>{user?.username}</Name>
           </UserInfo>

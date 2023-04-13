@@ -51,6 +51,27 @@ const pagesNavTree = [
   },
 ];
 
-const navigationConfig = [...dashBoardNavTree, ...pagesNavTree];
+const labNavTree = [
+  {
+    key: "lab",
+    path: `${APP_PREFIX_PATH}/pages`,
+    title: "sidenav.lab",
+    icon: PlusCircleOutlined,
+    breadcrumb: true,
+    isGroupTitle: true,
+    submenu: [
+      {
+        key: "pages-hl7-entries",
+        path: `${APP_PREFIX_PATH}/pages/hl7-entries`,
+        title: "sidenav.lab.hemograma",
+        icon: PlusCircleOutlined,
+        breadcrumb: false,
+        submenu: [],
+      },
+    ],
+  },
+];
+
+const navigationConfig = [...labNavTree];
 
 export default navigationConfig;

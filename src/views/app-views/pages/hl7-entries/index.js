@@ -35,7 +35,7 @@ export class HL7EntryList extends Component {
       this.setState({
         hl7Entries: this.state.hl7Entries.filter((item) => item.id !== id),
       });
-      message.success({ content: `Deleted HL7 entry ${id}`, duration: 2 });
+      message.success({ content: `Eliminada Muestra #${id}`, duration: 2 });
     };
     fetchData();
   };
@@ -161,6 +161,7 @@ export class HL7EntryList extends Component {
               <Button
                 type="primary"
                 className="mr-2"
+                style={{ display: "none" }}
                 icon={<UnorderedListOutlined />}
                 onClick={() => {
                   this.showHL7Entry(elm);
@@ -169,7 +170,7 @@ export class HL7EntryList extends Component {
               />
             </Tooltip>
 
-            <Tooltip title="Modal">
+            <Tooltip title="Ver">
               <Button
                 type="primary"
                 className="mr-2"
@@ -181,7 +182,7 @@ export class HL7EntryList extends Component {
               />
             </Tooltip>
 
-            <Tooltip title="Excel">
+            <Tooltip title="Descargar Excel">
               <Button
                 className="mr-2"
                 icon={<DownloadOutlined />}
@@ -192,7 +193,7 @@ export class HL7EntryList extends Component {
               />
             </Tooltip>
 
-            <Tooltip title="Delete">
+            <Tooltip title="Eliminar">
               <Button
                 danger
                 icon={<DeleteOutlined />}

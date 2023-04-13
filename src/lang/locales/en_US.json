@@ -107,6 +107,9 @@
   "sidenav.pages.hl7-list": "HL7 List",
   "sidenav.pages.hl7-entries": "HL7 Entries",
 
+  "sidenav.lab": "Laboratorio",
+  "sidenav.lab.hemograma": "Hemograma",
+
   "sidenav.authentication": "Authentication",
   "sidenav.authentication.login.1": "Login 1",
   "sidenav.authentication.login.2": "Login 2",

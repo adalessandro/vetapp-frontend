@@ -30,11 +30,6 @@ export const LoginForm = (props) => {
     allowRedirect = true,
   } = props;
 
-  const initialCredential = {
-    username: "testuser",
-    password: "testuser",
-  };
-
   const onLogin = (values) => {
     showLoading();
     signIn(values);
@@ -63,19 +58,14 @@ export const LoginForm = (props) => {
       >
         <Alert type="error" showIcon message={message}></Alert>
       </motion.div>
-      <Form
-        layout="vertical"
-        name="login-form"
-        initialValues={initialCredential}
-        onFinish={onLogin}
-      >
+      <Form layout="vertical" name="login-form" onFinish={onLogin}>
         <Form.Item
           name="username"
-          label="Username"
+          label="Usuario"
           rules={[
             {
               required: true,
-              message: "Please input your username",
+              message: "Ingrese usuario",
             },
           ]}
         >
@@ -91,13 +81,13 @@ export const LoginForm = (props) => {
                   : ""
               }`}
             >
-              <span>Password</span>
+              <span>Contraseña</span>
               {showForgetPassword && (
                 <span
                   onClick={() => onForgetPasswordClick}
                   className="cursor-pointer font-size-sm font-weight-normal text-muted"
                 >
-                  Forget Password?
+                  Contraseña olvidada?
                 </span>
               )}
             </div>
@@ -105,7 +95,7 @@ export const LoginForm = (props) => {
           rules={[
             {
               required: true,
-              message: "Please input your password",
+              message: "Ingrese contraseña",
             },
           ]}
         >
@@ -113,7 +103,7 @@ export const LoginForm = (props) => {
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit" block loading={loading}>
-            Sign In
+            Ingresar
           </Button>
         </Form.Item>
         {extra}

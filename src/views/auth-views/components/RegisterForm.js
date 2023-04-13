@@ -15,26 +15,26 @@ const rules = {
   username: [
     {
       required: true,
-      message: "Please input your username",
+      message: "Ingrese usuario",
     },
   ],
   password: [
     {
       required: true,
-      message: "Please input your password",
+      message: "Ingrese contraseña",
     },
   ],
   confirm: [
     {
       required: true,
-      message: "Please confirm your password!",
+      message: "Confirme su contraseña!",
     },
     ({ getFieldValue }) => ({
       validator(_, value) {
         if (!value || getFieldValue("password") === value) {
           return Promise.resolve();
         }
-        return Promise.reject("Passwords do not match!");
+        return Promise.reject("Las contraseñas no coinciden!");
       },
     }),
   ],
@@ -97,33 +97,22 @@ export const RegisterForm = (props) => {
         name="register-form"
         onFinish={onSignUp}
       >
-        <Form.Item
-          name="username"
-          label="Username"
-          rules={rules.username}
-          hasFeedback
-        >
+        <Form.Item name="username" label="Usuario" rules={rules.username}>
           <Input prefix={<UserOutlined className="text-primary" />} />
         </Form.Item>
-        <Form.Item
-          name="password"
-          label="Password"
-          rules={rules.password}
-          hasFeedback
-        >
+        <Form.Item name="password" label="Contraseña" rules={rules.password}>
           <Input.Password prefix={<LockOutlined className="text-primary" />} />
         </Form.Item>
         <Form.Item
           name="confirm"
-          label="ConfirmPassword"
+          label="Confirmar Contraseña"
           rules={rules.confirm}
-          hasFeedback
         >
           <Input.Password prefix={<LockOutlined className="text-primary" />} />
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit" block loading={loading}>
-            Sign Up
+            Registrarse
           </Button>
         </Form.Item>
       </Form>

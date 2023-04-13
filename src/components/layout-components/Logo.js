@@ -67,7 +67,11 @@ export const Logo = ({ mobileLogo, logoType }) => {
 
   return (
     <LogoWrapper style={{ width: `${getLogoWidthGutter()}` }}>
-      <img src={getLogo()} alt={`${APP_NAME} logo`} />
+      <img
+        src={getLogo()}
+        style={{ height: "80%", margin: "auto" }}
+        alt={`${APP_NAME} logo`}
+      />
     </LogoWrapper>
   );
 };
