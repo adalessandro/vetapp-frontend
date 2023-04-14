@@ -1,5 +1,7 @@
+const API_HOST = process.env.API_HOST || "localhost";
+
 const dev = {
-  API_ENDPOINT_URL: "http://localhost:3001",
+  API_ENDPOINT_URL: `http://${API_HOST}:3001`,
 };
 
 const prod = {
