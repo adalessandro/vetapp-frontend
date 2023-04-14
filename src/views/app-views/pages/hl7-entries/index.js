@@ -125,8 +125,11 @@ export class HL7EntryList extends Component {
       {
         title: "Edad",
         dataIndex: "resultAge",
+        render: utils.intervalDateToString,
         sorter: {
-          compare: (a, b) => utils.antdTableSorter(a, b, "id"),
+          compare: (a, b) => {
+            return utils.intervalCompare(a.resultAge, b.resultAge);
+          },
         },
       },
       {

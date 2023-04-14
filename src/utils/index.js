@@ -230,6 +230,29 @@ class Utils {
     }
     return breakpoints;
   }
+
+  static intervalDateToString(obj) {
+    if (obj.years) return `${obj.years} años`;
+    if (obj.months) return `${obj.months} meses`;
+    if (obj.days) return `${obj.days} días`;
+    if (obj.hours) return `${obj.hours} horas`;
+    return `-----`;
+  }
+
+  static intervalCompareKey(x, y, key) {
+    const a = x[key] || 0;
+    const b = y[key] || 0;
+    return a > b ? 1 : b > a ? -1 : 0;
+  }
+
+  static intervalCompare(a, b) {
+    const keys = ["years", "months", "days", "hours"];
+    for (const key of keys) {
+      const ret = this.intervalCompareKey(a, b, key);
+      if (ret) return ret;
+    }
+    return 0;
+  }
 }
 
 export default Utils;

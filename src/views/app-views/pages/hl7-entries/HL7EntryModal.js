@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal, Descriptions, Table } from "antd";
+import utils from "utils";
 
 function genTable(data) {
   const ret = [];
@@ -52,7 +53,7 @@ const HL7EntryModal = ({ data, visible, close }) => {
   const headerData = [
     { key: "patientAlias", title: "Paciente" },
     { key: "patientSex", title: "Sexo" },
-    { key: "resultAge", title: "Edad" },
+    { key: "resultAge", title: "Edad", render: utils.intervalDateToString },
     { key: "patientRace", title: "Especie" },
     { key: "patientName", title: "Responsable" },
     { key: "observationCollector", title: "Solicita" },
@@ -95,7 +96,9 @@ const HL7EntryModal = ({ data, visible, close }) => {
         <Descriptions title="" layout="vertical">
           {headerData.map((header) => (
             <Descriptions.Item label={header.title} key={header.title}>
-              {data[header.key]}
+              {header.render
+                ? header.render(data[header.key])
+                : data[header.key]}
             </Descriptions.Item>
           ))}
         </Descriptions>
