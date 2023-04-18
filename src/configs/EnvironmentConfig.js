@@ -1,4 +1,4 @@
-const API_HOST = process.env.API_HOST || "localhost";
+const API_HOST = process.env.REACT_APP_API_HOST || "localhost";
 
 const dev = {
   API_ENDPOINT_URL: `http://${API_HOST}:3001`,
