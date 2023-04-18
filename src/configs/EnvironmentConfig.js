@@ -5,7 +5,7 @@ const dev = {
 };
 
 const prod = {
-  API_ENDPOINT_URL: "/api",
+  API_ENDPOINT_URL: `http://${API_HOST}:3001`,
 };
 
 const test = {
