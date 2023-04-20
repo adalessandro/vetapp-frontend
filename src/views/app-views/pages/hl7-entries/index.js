@@ -11,6 +11,7 @@ import HL7EntryModal from "./HL7EntryModal";
 import HL7EntryService from "../../../../services/HL7EntryService";
 import utils from "utils";
 import FileSaver from "file-saver";
+import { socket } from "../../../../socket";
 
 export class HL7EntryList extends Component {
   state = {
@@ -26,7 +27,14 @@ export class HL7EntryList extends Component {
       const hl7Entries = Array.from(response);
       this.setState({ hl7Entries });
     };
+
+    const onHL7EntryNew = (data) => {
+      fetchData();
+      message.info({ content: `Nueva Muestra #${data.id}`, duration: 5 });
+    };
+
     fetchData();
+    socket.on("hl7-entry-new", onHL7EntryNew);
   }
 
   deleteHL7Entry = (id) => {
@@ -35,7 +43,7 @@ export class HL7EntryList extends Component {
       this.setState({
         hl7Entries: this.state.hl7Entries.filter((item) => item.id !== id),
       });
-      message.success({ content: `Eliminada Muestra #${id}`, duration: 2 });
+      message.success({ content: `Eliminada Muestra #${id}`, duration: 5 });
     };
     fetchData();
   };
@@ -76,7 +84,7 @@ export class HL7EntryList extends Component {
       FileSaver.saveAs(data, filename);
       message.success({
         content: `Downloaded Excel file ${filename}`,
-        duration: 2,
+        duration: 5,
       });
     };
     fetchData();
