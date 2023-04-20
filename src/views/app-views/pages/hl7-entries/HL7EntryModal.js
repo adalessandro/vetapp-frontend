@@ -87,7 +87,7 @@ const HL7EntryModal = ({ data, visible, close }) => {
     <>
       <Modal
         title={`Muestra #${data.id} - (${new Date(
-          data.observationDate.slice(0, -1)
+          data.observationDate
         ).toLocaleString()})`}
         open={visible}
         onOk={handleOk}

@@ -71,9 +71,7 @@ export class HL7EntryList extends Component {
   downloadHL7EntryExcel = (hl7Entry) => {
     const fetchData = async () => {
       const data = await HL7EntryService.downloadExcel({ id: hl7Entry.id });
-      const date = new Date(hl7Entry.observationDate.slice(0, -1))
-        .toLocaleString()
-        .split("T")[0];
+      const date = new Date(hl7Entry.observationDate).toLocaleDateString();
       const filename = `${date} - ${hl7Entry.patientAlias} - ${hl7Entry.patientName}.xlsx`;
       FileSaver.saveAs(data, filename);
       message.success({
@@ -99,7 +97,7 @@ export class HL7EntryList extends Component {
       {
         title: "Fecha",
         dataIndex: "observationDate",
-        render: (a) => new Date(a.slice(0, -1)).toLocaleString(),
+        render: (a) => new Date(a).toLocaleString(),
         sorter: {
           compare: (a, b) => {
             return (
